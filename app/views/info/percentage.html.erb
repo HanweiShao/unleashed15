@@ -10,26 +10,33 @@
     </style>
 </head>
 <body>
-<svg id="fillgauge1" width="97%" height="250"></svg>
+<svg id="fillgauge1" width="97%" height="250" style="display:none"></svg>
 
-<div style="padding:0 2% 0 2%">
-<svg id="fillgauge2" width="24%" height="200"></svg>
-<svg id="fillgauge3" width="24%" height="200"></svg>
-<svg id="fillgauge4" width="24%" height="200"></svg>
-<svg id="fillgauge5" width="24%" height="200"></svg>
+<div style="padding:0 25% 0 25%;">
+<svg id="fillgauge2" width="24%" height="100"></svg>
+<svg id="fillgauge3" width="24%" height="100"></svg>
+<svg id="fillgauge4" width="24%" height="100"></svg>
+<svg id="fillgauge5" width="24%" height="100"></svg>
 </div>
 
-
+<!--
 <div id="dialog" title="Dialog Title">I'm a dialog</div>
- 
+ -->
 <script>
+$("#fillgauge2").click(function(){
+    alert("hi");
+});
 
-$( "#dialog" ).dialog({ autoOpen: false,
-                        show :{effect: "fade", duration: 600}
-                         });    
+/*
+$( "#dialog" ).dialog({ 
+    autoOpen: false,
+    show :{effect: "fade", duration: 600}
+});
+    
 $( "#fillgauge4" ).click(function() {
     $( "#dialog" ).dialog("open");
 });
+*/
 </script>
 
 <script language="JavaScript">
