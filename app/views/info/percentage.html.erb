@@ -11,13 +11,40 @@
 </head>
 <body>
 <svg id="fillgauge1" width="97%" height="250"></svg>
-<svg id="fillgauge2" width="19%" height="200"></svg>
-<svg id="fillgauge3" width="19%" height="200"></svg>
-<svg id="fillgauge4" width="19%" height="200"></svg>
-<svg id="fillgauge5" width="19%" height="200"></svg>
-<svg id="fillgauge6" width="19%" height="200"></svg>
+
+<div style="padding:0 2% 0 2%">
+<svg id="fillgauge2" width="24%" height="200"></svg>
+<svg id="fillgauge3" width="24%" height="200"></svg>
+<svg id="fillgauge4" width="24%" height="200"></svg>
+<svg id="fillgauge5" width="24%" height="200"></svg>
+</div>
+
+
+<div id="dialog" title="Dialog Title">I'm a dialog</div>
+ 
+<script>
+
+$( "#dialog" ).dialog({ autoOpen: false,
+                        show :{effect: "fade", duration: 600}
+                         });    
+$( "#fillgauge4" ).click(function() {
+    $( "#dialog" ).dialog("open");
+});
+</script>
+
 <script language="JavaScript">
-    loadLiquidFillGauge("fillgauge1", 55);
+
+    var pAry = [];
+    var sum = 0, avg=0; 
+    <% @ps.each do |element| %>
+      var element = <%= element %> * 100;
+      pAry.push(element);
+      sum += element;
+    <% end %>
+    avg = sum/4;
+    
+    
+    loadLiquidFillGauge("fillgauge1", avg);
     var config1 = liquidFillGaugeDefaultSettings();
     config1.circleColor = "#FF7777";
     config1.textColor = "#FF4444";
@@ -26,7 +53,8 @@
     config1.circleThickness = 0.2;
     config1.textVertPosition = 0.2;
     config1.waveAnimateTime = 1000;
-    loadLiquidFillGauge("fillgauge2", 28, config1);
+    loadLiquidFillGauge("fillgauge2", pAry[0], config1);
+    
     var config2 = liquidFillGaugeDefaultSettings();
     config2.circleColor = "#D4AB6A";
     config2.textColor = "#553300";
@@ -38,16 +66,24 @@
     config2.waveAnimateTime = 2000;
     config2.waveHeight = 0.3;
     config2.waveCount = 1;
-    loadLiquidFillGauge("fillgauge3", 60.1, config2);
+    loadLiquidFillGauge("fillgauge3", pAry[1], config2);
+    
     var config3 = liquidFillGaugeDefaultSettings();
     config3.textVertPosition = 0.8;
-    config3.waveAnimateTime = 5000;
+    config3.waveAnimateTime = 2000;
+    config3.circleThickness = 0.15;
+    config3.waveColor = "#73C1DE";
     config3.waveHeight = 0.15;
-    config3.waveAnimate = false;
+    config3.waveAnimate = true;
     config3.waveOffset = 0.25;
     config3.valueCountUp = false;
-    config3.displayPercent = false;
-    loadLiquidFillGauge("fillgauge4", 50, config3);
+    config3.displayPercent = true;
+    config3.waveCount = 1;
+    loadLiquidFillGauge("fillgauge4", pAry[2], config3);
+
+    
+
+    
     var config4 = liquidFillGaugeDefaultSettings();
     config4.circleThickness = 0.15;
     config4.circleColor = "#808015";
@@ -62,7 +98,8 @@
     config4.waveOffset = 0.25;
     config4.textSize = 0.75;
     config4.waveCount = 3;
-    loadLiquidFillGauge("fillgauge5", 60.44, config4);
+    loadLiquidFillGauge("fillgauge5", pAry[3], config4);
+    
     var config5 = liquidFillGaugeDefaultSettings();
     config5.circleThickness = 0.4;
     config5.circleColor = "#6DA398";
