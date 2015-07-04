@@ -7,39 +7,49 @@
 	<%= javascript_include_tag "liquidFillGauge" %>
     <style>
         .liquidFillGaugeText { font-family: Helvetica; font-weight: bold; }
+        .smallBubble{
+            display: none;
+            left: 0px;
+            position: absolute;
+        }
+        .smallDiv{
+            display: inline-block;
+            text-align: center;
+            width:18%;
+        }
+        .bigDiv{
+            display: inline-block;
+            text-align: center;
+            width:22%;
+        }
     </style>
 </head>
 <body>
-<svg id="fillgauge1" width="97%" height="250" style="display:none"></svg>
 
-<div style="padding:0 25% 0 25%;">
-<svg id="fillgauge2" width="24%" height="100"></svg>
-<svg id="fillgauge3" width="24%" height="100"></svg>
-<svg id="fillgauge4" width="24%" height="100"></svg>
-<svg id="fillgauge5" width="24%" height="100"></svg>
+
+
+<div style="padding:0 20% 0 20%; margin: auto; font-family:Tahoma;">
+
+<div class="bigDiv">    
+    <svg id="fillgauge1" width="100%" ></svg><br/>
+    <b>Compatitiveness</b>  
 </div>
+
+<% [2,3,4,5].each do |i| %>
+ <div class="smallDiv">  
+    <svg id="fillgauge<%=i%>" calss="smallBubble" width="100%" height="100"></svg><br/>
+    <%=@labelAry[i-2]%>    
+</div>   
+<% end %>    
+
+
+    
+</div>    
 
 <!--
 <div id="dialog" title="Dialog Title">I'm a dialog</div>
  -->
 <script>
-$("#fillgauge2").click(function(){
-    alert("hi");
-});
-
-/*
-$( "#dialog" ).dialog({ 
-    autoOpen: false,
-    show :{effect: "fade", duration: 600}
-});
-    
-$( "#fillgauge4" ).click(function() {
-    $( "#dialog" ).dialog("open");
-});
-*/
-</script>
-
-<script language="JavaScript">
 
     var pAry = [];
     var sum = 0, avg=0; 
@@ -48,10 +58,13 @@ $( "#fillgauge4" ).click(function() {
       pAry.push(element);
       sum += element;
     <% end %>
+    
     avg = sum/4;
-    
-    
-    loadLiquidFillGauge("fillgauge1", avg);
+    var config0 = liquidFillGaugeDefaultSettings();
+    config0.waveAnimate=true;
+    config0.waveAnimateTime=5000;
+    loadLiquidFillGauge("fillgauge1", avg, config0);
+           
     var config1 = liquidFillGaugeDefaultSettings();
     config1.circleColor = "#FF7777";
     config1.textColor = "#FF4444";
@@ -61,6 +74,8 @@ $( "#fillgauge4" ).click(function() {
     config1.textVertPosition = 0.2;
     config1.waveAnimateTime = 1000;
     loadLiquidFillGauge("fillgauge2", pAry[0], config1);
+    $("#fillgauge2").show("slide", { direction: "right" }, 1000);
+    
     
     var config2 = liquidFillGaugeDefaultSettings();
     config2.circleColor = "#D4AB6A";
@@ -74,6 +89,9 @@ $( "#fillgauge4" ).click(function() {
     config2.waveHeight = 0.3;
     config2.waveCount = 1;
     loadLiquidFillGauge("fillgauge3", pAry[1], config2);
+    $("#fillgauge3").show("slide", { direction: "right" }, 1000);
+    
+    
     
     var config3 = liquidFillGaugeDefaultSettings();
     config3.textVertPosition = 0.8;
@@ -87,7 +105,7 @@ $( "#fillgauge4" ).click(function() {
     config3.displayPercent = true;
     config3.waveCount = 1;
     loadLiquidFillGauge("fillgauge4", pAry[2], config3);
-
+ $("#fillgauge4").show("slide", { direction: "right" }, 1000);
     
 
     
@@ -106,6 +124,27 @@ $( "#fillgauge4" ).click(function() {
     config4.textSize = 0.75;
     config4.waveCount = 3;
     loadLiquidFillGauge("fillgauge5", pAry[3], config4);
+     $("#fillgauge5").show("slide", { direction: "right" }, 1000);
+    canClick=false;
+
+
+/*
+$( "#dialog" ).dialog({ 
+    autoOpen: false,
+    show :{effect: "fade", duration: 600}
+});
+    
+$( "#fillgauge4" ).click(function() {
+    $( "#dialog" ).dialog("open");
+});
+*/
+</script>
+
+<script language="JavaScript">
+
+   
+
+    
     
     var config5 = liquidFillGaugeDefaultSettings();
     config5.circleThickness = 0.4;
