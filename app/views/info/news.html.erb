@@ -26,13 +26,14 @@
 </head>
 <style>
 	h1{
-		font-family: "Lucida Bright";
+		font-family: "Arial";
 	}
 	li{
 		list-style-type: none;
 		font-size: 12pt;
 	}
 	.recomImg{
+		display: inline-block;
 		margin-left: 10px;	
 		background-color: lightgrey;
 	}
@@ -60,8 +61,10 @@
 </ul>
 
 <h1>Recomendations</h1>
-	<% @recommandAry.each do |n|%>		
-		<img src="<%=n%>" alt="" width="150" class="recomImg" />					
+	<% @recommandAry.each do |n|%>
+		<div class="recomImg">		
+		<img src="<%=n%>" alt="" width="150"  />
+		</div>					
 	<%end%>
 
 

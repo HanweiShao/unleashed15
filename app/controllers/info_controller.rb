@@ -13,8 +13,7 @@ class InfoController < ApplicationController
 		#if(labelStr != "")
 		#	@labelAry = labelStr.split(',') 		
 		#end	
-		
-		puts @labelAry
+				
 	end	
 	
 	def news
@@ -23,6 +22,8 @@ class InfoController < ApplicationController
             jsonStr = Net::HTTP.get_response(URI.parse(url))            
             data = jsonStr.body
             
+			puts jsonStr
+			
             jsonHash = JSON.parse(data)
 			@score = jsonHash["totalScore"] * 2
 			@newsAry = jsonHash["resultset"]
