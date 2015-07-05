@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RateIt</title>
+
+	
+</head>
+<style>
+	h1{
+		font-family: "Arial";
+	}
+	li{
+		list-style-type: square;
+		font-size: 12pt;
+	}
+	.recomImg{
+		display: inline-block;
+		margin-left: 10px;	
+		background-color: lightgrey;
+	}
+</style>
+<body>
+
+<h1>Sentiment Score:</h1>
+<div  class="rateit bigstars"
+		data-rateit-value="<%=@score%>" 
+		data-rateit-ispreset="true" 
+		data-rateit-readonly="true"
+		data-rateit-starwidth="50" data-rateit-starheight="50"
+		data-rateit-max="10"
+		 >
+</div>
+
+<h1>Top News:</h1>
+<ul>
+	<% @newsAry.each do |n|%>
+	<li>
+			<%=n["title"]%>				
+	</li>							
+	<%end%>
+
+</ul>
+
+<h1>Recomendations</h1>
+	<% @recommandAry.each do |n|%>
+		<div class="recomImg">		
+		<img src="<%=n%>" alt="" width="150"  />
+		</div>					
+	<%end%>
+
+
+</body>
