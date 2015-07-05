@@ -18,13 +18,15 @@ class InfoController < ApplicationController
 	end	
 	
 	def news
-			url = "http://unleashedss.herokuapp.com/api/index?country=china"
+			@country = params[:c]
+			url = "http://unleashedss.herokuapp.com/api/index?country=#{@country}"
             jsonStr = Net::HTTP.get_response(URI.parse(url))            
             data = jsonStr.body
             
             jsonHash = JSON.parse(data)
 			@score = jsonHash["totalScore"] * 2
 			@newsAry = jsonHash["resultset"]
+			@recommandAry = jsonHash["recomendations"]
 			
 			
 			#@score = 3.64904866102933805 * 2

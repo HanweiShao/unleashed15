@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RateIt</title>
+
+	<%= stylesheet_link_tag "rateit" %>
+	<%= stylesheet_link_tag "content/bigstars" %>
+	<%= stylesheet_link_tag "content/antenna" %>
+	<%= stylesheet_link_tag "content/svg" %>
+	<%= stylesheet_link_tag "sh/shCore" %>
+	<%= stylesheet_link_tag "sh/shCoreDefault" %>
+
+   
+    <!-- alternative styles 
+    <link href="content/bigstars.css" rel="stylesheet" type="text/css">
+    <link href="content/antenna.css" rel="stylesheet" type="text/css">
+    <link href="content/svg.css" rel="stylesheet" type="text/css">
+	-->
+    <!-- syntax highlighter 
+    <link href="sh/shCore.css" rel="stylesheet" type="text/css">
+    <link href="sh/shCoreDefault.css" rel="stylesheet" type="text/css">
+	-->
+	
+    
+    <%= javascript_include_tag "jquery.rateit.min" %>
+</head>
+<style>
+	h1{
+		font-family: "Lucida Bright";
+	}
+	li{
+		list-style-type: none;
+		font-size: 12pt;
+	}
+	.recomImg{
+		margin-left: 10px;	
+		background-color: lightgrey;
+	}
+</style>
+<body>
+
+<h1>Sentiment Score:</h1>
+<div  class="rateit bigstars"
+		data-rateit-value="<%=@score%>" 
+		data-rateit-ispreset="true" 
+		data-rateit-readonly="true"
+		data-rateit-starwidth="50" data-rateit-starheight="50"
+		data-rateit-max="10"
+		 >
+</div>
+
+<h1>Top News:</h1>
+<ul>
+	<% @newsAry.each do |n|%>
+	<li>
+			<%=n["title"]%>				
+	</li>							
+	<%end%>
+
+</ul>
+
+<h1>Recomendations</h1>
+	<% @recommandAry.each do |n|%>		
+		<img src="<%=n%>" alt="" width="150" class="recomImg" />					
+	<%end%>
+
+
+</body>
