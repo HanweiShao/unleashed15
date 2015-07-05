@@ -33,7 +33,7 @@ class InfoController < ApplicationController
 			#@score = 3.64904866102933805 * 2
 	end
 	
-	def news
+	def news2
 			@country = params[:c]
 			url = "http://unleashedss.herokuapp.com/api/index?country=#{@country}"
             jsonStr = Net::HTTP.get_response(URI.parse(url))            

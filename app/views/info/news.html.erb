@@ -25,6 +25,10 @@
     <%= javascript_include_tag "jquery.rateit.min" %>
 </head>
 <style>
+	body
+	{
+		background-color: #f7f7f7;
+	}
 	h1{
 		font-family: "Arial";
 	}
@@ -54,7 +58,7 @@
 <ul>
 	<% @newsAry.each do |n|%>
 	<li>
-			<%=n["title"]%>				
+			<%=n["title"]%>	<img src="https://dl.dropboxusercontent.com/u/17211727/arrow_up_right_1-grey.gif" />			
 	</li>							
 	<%end%>
 
